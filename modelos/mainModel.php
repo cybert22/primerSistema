@@ -20,4 +20,28 @@
             $sql->execute();
             return $sql;
         }
+        // Método para encriptar o hashear
+        public function encryption($string){
+			$output=FALSE;
+			$key=hash('sha256', SECRET_KEY);
+			$iv=substr(hash('sha256', SECRET_IV), 0, 16);
+			$output=openssl_encrypt($string, METHOD, $key, 0, $iv);
+			$output=base64_encode($output);
+			return $output;
+        }
+        // Método para Desencriptar o volver al estado original
+		protected static function decryption($string){
+			$key=hash('sha256', SECRET_KEY);
+			$iv=substr(hash('sha256', SECRET_IV), 0, 16);
+			$output=openssl_decrypt(base64_decode($string), METHOD, $key, 0, $iv);
+			return $output;
+        }
+        // Método para generar códigos aleatorios
+        protected static function generarCodigoAleatorio($letra, $longitud, $numero){
+            for($i=1; $i<=$longitud; $i++){
+                $aletorio = rand(0,9);
+                $letra.=$aletorio;
+            }
+            return $letra.="-".$numero;
+        }
     }
