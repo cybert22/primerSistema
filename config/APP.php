@@ -1,5 +1,5 @@
 <?php
-	const SERVERURL="http://localhost/mvc/original/";
+	const SERVERURL="http://localhost/mvc/PRESTAMOS-PHP-POO-PDO-MVC-AJAX/";
 
 	const COMPANY="SISTEMAS PRESTAMOS";
 
