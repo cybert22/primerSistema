@@ -75,4 +75,25 @@
             $cadena = trim($cadena);
             return $cadena;
         }
+        // Función para verificar datos
+        protected static function verificarDatos($filtro, $cadera){
+            if (preg_match("/".$filtro."$/",$cadera)) {
+                // si coincide entonces no hay error devolvemos false
+                return false;
+            }else {
+                // entonces si hya error o no coincide
+                return true;
+            }
+        }
+        // Funcion para verificar fechas
+        protected static function verificarFecha($fecha){
+            $valores = explode('-', $fecha);
+            if(count($valores)==3 && checkdate($valores[1],$valores[2],$valores[0])){
+                // si coincide entonces no hay error
+                return false;
+            }else{
+                // caso contrario si hay error o no coincide entonces devolvemos true
+                return true;
+            }
+        }
     }
